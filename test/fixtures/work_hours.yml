@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  compensation: 9.99
+  working_hours_per_day: 1
+  working_days_per_week: 1
+  user: one
+
+two:
+  compensation: 9.99
+  working_hours_per_day: 1
+  working_days_per_week: 1
+  user: two
