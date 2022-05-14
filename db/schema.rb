@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_11_210932) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_14_213501) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,15 +51,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_11_210932) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "variable_expense_products", force: :cascade do |t|
-    t.string "name"
-    t.decimal "value", precision: 4, scale: 2
-    t.bigint "products_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["products_id"], name: "index_variable_expense_products_on_products_id"
-  end
-
   create_table "variable_expenses", force: :cascade do |t|
     t.string "name"
     t.decimal "value", precision: 4, scale: 2
@@ -69,8 +60,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_11_210932) do
     t.index ["studio_id"], name: "index_variable_expenses_on_studio_id"
   end
 
+  create_table "variable_product_expenses", force: :cascade do |t|
+    t.string "name"
+    t.decimal "value", precision: 4, scale: 2
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_variable_product_expenses_on_product_id"
+  end
+
   create_table "work_hours", force: :cascade do |t|
-    t.decimal "compensation", precision: 4, scale: 2
+    t.decimal "compensation", precision: 8, scale: 2
     t.integer "working_hours_per_day"
     t.integer "working_days_per_week"
     t.bigint "user_id", null: false
@@ -83,7 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_11_210932) do
   add_foreign_key "fixed_expenses", "studios"
   add_foreign_key "products", "studios"
   add_foreign_key "studios", "users"
-  add_foreign_key "variable_expense_products", "products", column: "products_id"
   add_foreign_key "variable_expenses", "studios"
+  add_foreign_key "variable_product_expenses", "products"
   add_foreign_key "work_hours", "users"
 end
