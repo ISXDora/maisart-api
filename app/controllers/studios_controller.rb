@@ -1,5 +1,3 @@
-module Api 
-  module V1
     class StudiosController < ApplicationController
       def index 
         studios = Studio.order('created_at DESC')
@@ -12,7 +10,7 @@ module Api
       def create 
         studio = Studio.new(studio_params)
           if studio.save
-            render json: {status: 'SUCCESS', message:'Ateliê salvo', data: studio}, status: :ok
+            render json: studio, status: :ok
           else
             render json: {status: 'ERROR', message: 'Ateliê não salvo', data: studio}, status: :unprocessable_entity
           end
@@ -31,10 +29,10 @@ module Api
         end
       end
 
+      
+
       private
       def studio_params 
-        params.permit(:name, :cnpj, :user_id)
+        params.permit(:name, :cnpj, :user_id, :count_product )
       end
     end
-  end
-end

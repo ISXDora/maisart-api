@@ -1,5 +1,3 @@
-module Api 
-  module V1
     class WorkHoursController < ApplicationController
       def index 
         workHours = WorkHour.order('created_at DESC')
@@ -8,6 +6,15 @@ module Api
       def show 
         workHour = WorkHour.find(params[:id])
         render json: {status: 'SUCCESS', message:'Hora de trabalho Carregada', data: workHour}, status: :ok
+      end
+      def calcHour 
+        workHour = WorkHour.find(params[:id])
+        @hourly_rate =   workHour.hourly_rate
+
+        teste = (workHour.working_hours_per_day * workHour.working_days_per_week)  * 4.3 
+        @hourly_rate =  workHour.compensation / teste
+        render json: {status: 'SUCCESS', message:'Hora de trabalho Calculada', data: @hourly_rate}, status: :ok
+
       end
       def create 
         workHour = WorkHour.new(workHour_params)
@@ -33,8 +40,6 @@ module Api
       
       private
       def workHour_params
-        params.permit(:compensation, :working_hours_per_day, :working_days_per_week, :hourly_rate, :user_id )
+        params.permit(:compensation, :working_hours_per_day, :working_days_per_week, :hourly_rate, :user_id, :id)
       end
     end
-  end
-end 

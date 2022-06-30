@@ -1,12 +1,11 @@
-module Api 
-  module V1
+
     class FixedExpensesController < ApplicationController
       def index 
         fixedExpenses = FixedExpense.order('created_at DESC')
         render json: {status: 'SUCCESS', message:'Despesas fixas Carregadas', data: fixedExpenses}, status: :ok
       end
       def show 
-        fixedExpense = FixedExpense.find(params[:id])
+        fixedExpense = FixedExpense.where('studio_id = ?', params[:id])
         render json: {status: 'SUCCESS', message:'Despesa fixa Carregada', data: fixedExpense}, status: :ok
       end
       def create 
@@ -16,6 +15,21 @@ module Api
           else
             render json: {status: 'ERROR', message: 'Despesa fixa não salva', data: fixedExpense}, status: :unprocessable_entity
           end
+      end
+      def calcFixedExpense
+        fixedExpense = FixedExpense.where('studio_id = ?', params[:id])
+        total = 0
+        expenses = []
+        fixedExpense.each do |fixedExpense|
+          expenses << fixedExpense.value 
+        end
+
+        expenses.each do |expense|
+          total += expense
+
+        end
+        render json: {status: 'SUCCESS', message:'Despesa fixa calculada', data: total}, status: :ok
+                
       end
       def destroy
         fixedExpense = FixedExpense.find(params[:id])
@@ -33,8 +47,6 @@ module Api
 
       private
       def fixedExpense_params
-        params.permit(:name, :value, :studio_id )
+        params.permit(:name, :value, :studio_id)
       end
     end
-  end
-end 

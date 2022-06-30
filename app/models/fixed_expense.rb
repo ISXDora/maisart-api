@@ -1,5 +1,5 @@
 class FixedExpense < ApplicationRecord
-  has_one :studio
+  has_many :studio 
   validates :name, presence: true
   validates :value, presence: true
 end
