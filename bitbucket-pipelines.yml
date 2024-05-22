@@ -9,8 +9,6 @@ pipelines:
 
     - step:
         name: "Docker build e Push da Imagem"
-        caches:
-          - docker
         script:
           - docker build -t isadoraxavierr/ruby-2.7.4:v$BITBUCKET_BUILD_NUMBER -t isadoraxavierr/ruby-2.7.4:latest .
           - docker push isadoraxavierr/ruby-2.7.4:v$BITBUCKET_BUILD_NUMBER
