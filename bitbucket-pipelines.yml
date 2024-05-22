@@ -3,21 +3,14 @@ image: atlassian/default-image:3
 pipelines:
   default:
     - step:
-        name: "Checkout do código"
-        caches:
-          - docker
-        script:
-          - echo "Clonando o repositório"
-          - git clone $BITBUCKET_GIT_HTTP_ORIGIN repo
-          - cd repo
-
-    - step:
         name: "Docker Login"
         script:
           - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
 
     - step:
         name: "Docker build e Push da Imagem"
+        caches:
+          - docker
         script:
           - docker build -t isadoraxavierr/ruby-2.7.4:v$BITBUCKET_BUILD_NUMBER -t isadoraxavierr/ruby-2.7.4:latest .
           - docker push isadoraxavierr/ruby-2.7.4:v$BITBUCKET_BUILD_NUMBER
