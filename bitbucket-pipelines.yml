@@ -50,6 +50,8 @@ pipelines:
             - IMAGE="isadoraxavierr/${IMAGE_NAME}"
             - docker tag "${IMAGE_NAME}" "${IMAGE}:${VERSION}"
             - docker push "${IMAGE}:${VERSION}"
+            - docker tag "${IMAGE}:${VERSION}" "${IMAGE}:latest"
+            - docker push "${IMAGE}:latest"
           services:
             - docker
       - step:
@@ -60,7 +62,7 @@ pipelines:
             variables:
               AZURE_APP_NAME: ${APP_NAME}
               AZURE_PUBLISH_PROFILE: ${PUBLISH_PROFILE}
-              DOCKER_CUSTOM_IMAGE_NAME: ${IMAGE}
+              DOCKER_CUSTOM_IMAGE_NAME: "isadoraxavierr/maisart-api:latest"
               AZURE_APP_ID: ${APP_ID}
               AZURE_PASSWORD: ${AZURE_PASSWORD}
               AZURE_TENANT_ID: ${AZURE_TENANT_ID}
