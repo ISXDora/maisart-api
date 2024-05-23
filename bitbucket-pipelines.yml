@@ -60,7 +60,7 @@ pipelines:
             variables:
               AZURE_APP_NAME: ${APP_NAME}
               AZURE_PUBLISH_PROFILE: ${PUBLISH_PROFILE}
-              DOCKER_CUSTOM_IMAGE_NAME: ${IMAGE]
+              DOCKER_CUSTOM_IMAGE_NAME: ${IMAGE}
               # DOCKER_REGISTRY_SERVER_URL: '<string>' # Optional.
               # DOCKER_REGISTRY_SERVER_USER: '<string>' # Optional.
               # DOCKER_REGISTRY_SERVER_PASSWORD: '<string>' # Optional.
