@@ -52,3 +52,19 @@ pipelines:
             - docker push "${IMAGE}:${VERSION}"
           services:
             - docker
+      - step:
+          name: Deploy na Azure
+          deployment: Production
+          script:
+          - pipe: atlassian/azure-web-apps-containers-deploy:1.2.0
+            variables:
+              AZURE_APP_NAME: ${APP_NAME}
+              AZURE_PUBLISH_PROFILE: ${PUBLISH_PROFILE}
+              DOCKER_CUSTOM_IMAGE_NAME: ${IMAGE]
+              # DOCKER_REGISTRY_SERVER_URL: '<string>' # Optional.
+              # DOCKER_REGISTRY_SERVER_USER: '<string>' # Optional.
+              # DOCKER_REGISTRY_SERVER_PASSWORD: '<string>' # Optional.
+              # AZURE_SUBSCRIPTION: '<string>' # Optional.
+              # SLOT: '<string>' # Optional.
+              # AZURE_CLOUD_ENVIRONMENT: '<string>' # Optional
+              # DEBUG: '<boolean>' # Optional
