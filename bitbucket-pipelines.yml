@@ -65,47 +65,37 @@ pipelines:
                 bundle exec rails db:migrate
           services:
             - docker
-
       - step:
-          name: Deploy DB na Azure
-          deployment: Production
-          script:
-            - echo ${DOCKER_PASSWORD} | docker login --username "$DOCKER_USERNAME" --password-stdin
-            - docker-compose -f compose-prod.yml up -d db
-          services:
-            - docker
+        name: Deploy Database na Azure
+        deployment: Production
+        script:
+        - pipe: atlassian/azure-web-apps-containers-deploy:1.2.0
           variables:
-            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-            POSTGRES_USER: ${POSTGRES_USER}
-            POSTGRES_DB: ${POSTGRES_DB}
-            DOCKER_USERNAME: ${DOCKER_USERNAME}
-            DOCKER_PASSWORD: ${DOCKER_PASSWORD}
-            AZURE_APP_NAME: ${APP_NAME_DB}
-            AZURE_PUBLISH_PROFILE: ${PUBLISH_PROFILE_DB}
-            DOCKER_CUSTOM_IMAGE_NAME: ${DOCKER_CUSTOM_IMAGE_DB}
-            AZURE_APP_ID: ${APP_ID_DB}
+            AZURE_APP_ID: ${AZURE_APP_ID_DB}
             AZURE_PASSWORD: ${AZURE_PASSWORD_DB}
             AZURE_TENANT_ID: ${AZURE_TENANT_ID_DB}
             AZURE_RESOURCE_GROUP: ${AZURE_RESOURCE_GROUP}
+            AZURE_APP_NAME: ${AZURE_APP_NAME_DB}
+            DOCKER_CUSTOM_IMAGE_NAME: "postgres:12.17"
+        services:
+          - docker
+        variables:
+          DOCKER_USERNAME: ${DOCKER_USERNAME}
+          DOCKER_PASSWORD: ${DOCKER_PASSWORD}
       - step:
           name: Deploy API na Azure
           deployment: Production
           script:
-            - echo ${DOCKER_PASSWORD} | docker login --username "$DOCKER_USERNAME" --password-stdin
-            - docker-compose -f compose-prod.yml up -d backend
+            - pipe: atlassian/azure-web-apps-containers-deploy:1.2.0
+              variables:
+                AZURE_APP_ID: ${AZURE_APP_ID}
+                AZURE_PASSWORD: ${AZURE_PASSWORD}
+                AZURE_TENANT_ID: ${AZURE_TENANT_ID}
+                AZURE_RESOURCE_GROUP: ${AZURE_RESOURCE_GROUP}
+                AZURE_APP_NAME: ${AZURE_APP_NAME_API}
+                DOCKER_CUSTOM_IMAGE_NAME: isadoraxavierr/${BITBUCKET_REPO_SLUG}:latest
           services:
             - docker
           variables:
-            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-            POSTGRES_USER: ${POSTGRES_USER}
-            POSTGRES_DB: ${POSTGRES_DB}
             DOCKER_USERNAME: ${DOCKER_USERNAME}
             DOCKER_PASSWORD: ${DOCKER_PASSWORD}
-            AZURE_APP_NAME: ${APP_NAME_API}
-            AZURE_PUBLISH_PROFILE: ${PUBLISH_PROFILE_API}
-            DOCKER_CUSTOM_IMAGE_NAME: ${DOCKER_CUSTOM_IMAGE_API}
-            AZURE_APP_ID: ${APP_ID}
-            AZURE_PASSWORD: ${AZURE_PASSWORD}
-            AZURE_TENANT_ID: ${AZURE_TENANT_ID}
-            AZURE_RESOURCE_GROUP: ${AZURE_RESOURCE_GROUP}
-
