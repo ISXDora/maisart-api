@@ -93,3 +93,4 @@ pipelines:
                 DOCKER_CUSTOM_IMAGE_NAME: isadoraxavierr/${BITBUCKET_REPO_SLUG}:latest
           services:
             - docker
+            
