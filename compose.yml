@@ -1,0 +1,41 @@
+services:
+
+  db:
+    container_name: maisart-db-dev
+    image: postgres:12.17
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: postgres
+      POSTGRES_DB: api_maisart_development
+    volumes:
+      - db-docker-vol:/var/lib/postgresql/data
+    networks:
+      - maisart_net
+  maisart-api:
+    container_name: maisart-back
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    networks:
+      - maisart_net
+    environment:
+      password: admin
+      username: postgres
+      database: api_maisart_development
+      host: db
+    command: ./entrypoint.sh
+
+volumes: 
+  db-docker-vol:
+    name: postgre-db-maisart-vol-dev
+networks:
+  maisart_net:
+    driver: bridge
