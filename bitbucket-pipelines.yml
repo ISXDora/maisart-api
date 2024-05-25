@@ -42,18 +42,6 @@ pipelines:
           artifacts:
             - "*.tar"
       - step:
-          name: Pull Docker Image for postgres and save
-          script:
-            - IMAGE_NAME_DB=maisart-db
-            - docker pull postgres 
-            - docker save ${IMAGE_NAME_DB} --output "${IMAGE_NAME_DB}.tar"
-          services:
-            - docker
-          caches:
-            - docker
-          artifacts:
-            - "*.tar"
-      - step:
           name: Push Docker Image for API to Docker Hub
           deployment: Production
           script:
