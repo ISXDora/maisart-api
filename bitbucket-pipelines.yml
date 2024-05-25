@@ -82,7 +82,9 @@ pipelines:
             DOCKER_USERNAME: ${DOCKER_USERNAME}
             DOCKER_PASSWORD: ${DOCKER_PASSWORD}
             AZURE_APP_NAME: ${APP_NAME_API}
-            AZURE_PUBLISH_PROFILE: ${PUBLISH_PROFILE_API}
+            AZURE_PUBLISH_PROFILE: 
+              - ${PUBLISH_PROFILE_API}
+              - ${PUBLISH_PROFILE_DB}
             DOCKER_CUSTOM_IMAGE_NAME: "isadoraxavierr/${BITBUCKET_REPO_SLUG}:latest"
             AZURE_APP_ID: ${APP_ID}
             AZURE_PASSWORD: ${AZURE_PASSWORD}
