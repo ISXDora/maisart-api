@@ -56,8 +56,6 @@ pipelines:
             - docker push "${IMAGE_API}:latest"
           services:
             - docker
-  custom:
-    deploy:
       - step:
           name: Run Database Migrations
           script:
