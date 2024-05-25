@@ -26,7 +26,6 @@ pipelines:
             script:
               - hadolint Dockerfile
 
-
   branches:
     main:
       - step:
@@ -43,7 +42,7 @@ pipelines:
             - "*.tar"
       - step:
           name: Push Docker Image for API to Docker Hub
-          deployment: Production
+          deployment: Production_API
           script:
             - echo ${DOCKER_PASSWORD} | docker login --username "$DOCKER_USERNAME" --password-stdin
             - IMAGE_NAME_API=$BITBUCKET_REPO_SLUG
@@ -67,21 +66,21 @@ pipelines:
             - docker
       - step:
           name: Deploy Database na Azure
-          deployment: Production
+          deployment: Production_DB
           script:
-          - pipe: atlassian/azure-web-apps-containers-deploy:1.2.0
-            variables:
-              AZURE_APP_ID: ${AZURE_APP_ID_DB}
-              AZURE_PASSWORD: ${AZURE_PASSWORD_DB}
-              AZURE_TENANT_ID: ${AZURE_TENANT_ID_DB}
-              AZURE_RESOURCE_GROUP: ${AZURE_RESOURCE_GROUP}
-              AZURE_APP_NAME: ${AZURE_APP_NAME_DB}
-              DOCKER_CUSTOM_IMAGE_NAME: "postgres:12.17"
+            - pipe: atlassian/azure-web-apps-containers-deploy:1.2.0
+              variables:
+                AZURE_APP_ID: ${AZURE_APP_ID_DB}
+                AZURE_PASSWORD: ${AZURE_PASSWORD_DB}
+                AZURE_TENANT_ID: ${AZURE_TENANT_ID_DB}
+                AZURE_RESOURCE_GROUP: ${AZURE_RESOURCE_GROUP}
+                AZURE_APP_NAME: ${AZURE_APP_NAME_DB}
+                DOCKER_CUSTOM_IMAGE_NAME: "postgres:12.17"
           services:
-          - docker
+            - docker
       - step:
           name: Deploy API na Azure
-          deployment: Production
+          deployment: Production_API
           script:
             - pipe: atlassian/azure-web-apps-containers-deploy:1.2.0
               variables:
@@ -93,4 +92,3 @@ pipelines:
                 DOCKER_CUSTOM_IMAGE_NAME: isadoraxavierr/${BITBUCKET_REPO_SLUG}:latest
           services:
             - docker
-            
