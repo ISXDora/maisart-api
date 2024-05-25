@@ -42,7 +42,6 @@ pipelines:
             - "*.tar"
       - step:
           name: Push Docker Image for API to Docker Hub
-          deployment: Production_API
           script:
             - echo ${DOCKER_PASSWORD} | docker login --username "$DOCKER_USERNAME" --password-stdin
             - IMAGE_NAME_API=$BITBUCKET_REPO_SLUG
@@ -66,7 +65,6 @@ pipelines:
             - docker
       - step:
           name: Deploy Database na Azure
-          deployment: Production_DB
           script:
             - pipe: atlassian/azure-web-apps-containers-deploy:1.2.0
               variables:
@@ -80,7 +78,7 @@ pipelines:
             - docker
       - step:
           name: Deploy API na Azure
-          deployment: Production_API
+          deployment: Production
           script:
             - pipe: atlassian/azure-web-apps-containers-deploy:1.2.0
               variables:
