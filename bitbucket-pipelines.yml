@@ -54,20 +54,6 @@ pipelines:
           artifacts:
             - "*.tar"
       - step:
-          name: Push Docker Image for Postgres to Docker Hub
-          script:
-            - echo ${DOCKER_PASSWORD} | docker login --username "$DOCKER_USERNAME" --password-stdin
-            - IMAGE_NAME_DB=maisart-db
-            - docker load --input "${IMAGE_NAME_DB}.tar"
-            - VERSION="prod-0.1.${BITBUCKET_BUILD_NUMBER}"
-            - IMAGE_DB="isadoraxavierr/${IMAGE_NAME_DB}"
-            - docker tag "${IMAGE_NAME_DB}" "${IMAGE_DB}:${VERSION}"
-            - docker push "${IMAGE_DB}:${VERSION}"
-            - docker tag "${IMAGE_DB}:${VERSION}" "${IMAGE_DB}:latest"
-            - docker push "${IMAGE_DB}:latest"
-          services:
-            - docker
-      - step:
           name: Push Docker Image for API to Docker Hub
           deployment: Production
           script:
