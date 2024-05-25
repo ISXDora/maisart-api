@@ -65,7 +65,6 @@ pipelines:
                 bundle exec rails db:migrate
           services:
             - docker
-
       - step:
           name: Deploy DB na Azure
           deployment: Production
