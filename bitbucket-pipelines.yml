@@ -59,7 +59,7 @@ pipelines:
           script:
             - pipe: atlassian/azure-web-apps-containers-deploy:1.2.0
               variables:
-                AZURE_APP_ID: ${AZURE_APP_ID_DB}
+                AZURE_APP_ID: ${APP_ID_DB}
                 AZURE_PASSWORD: ${AZURE_PASSWORD_DB}
                 AZURE_TENANT_ID: ${AZURE_TENANT_ID_DB}
                 AZURE_RESOURCE_GROUP: ${AZURE_RESOURCE_GROUP}
