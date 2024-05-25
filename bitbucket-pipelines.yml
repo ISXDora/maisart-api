@@ -55,15 +55,6 @@ pipelines:
           services:
             - docker
       - step:
-          name: Run Database Migrations
-          script:
-            docker run --rm \
-  -e DATABASE_URL="postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}" \
-  $DOCKER_USERNAME/${BITBUCKET_REPO_SLUG}:latest \
-  bundle exec rails db:migrate
-          services:
-            - docker
-      - step:
           name: Deploy Database na Azure
           script:
             - pipe: atlassian/azure-web-apps-containers-deploy:1.2.0
