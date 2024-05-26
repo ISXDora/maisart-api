@@ -27,7 +27,6 @@ pipelines:
             script:
               - hadolint Dockerfile
 
-
   branches:
     main:
       - step:
@@ -54,15 +53,6 @@ pipelines:
             - docker push "${IMAGE_API}:${VERSION}"
             - docker tag "${IMAGE_API}:${VERSION}" "${IMAGE_API}:latest"
             - docker push "${IMAGE_API}:latest"
-          services:
-            - docker
-      - step:
-          name: Run Database Migrations
-          script:
-            - docker run --rm \
-                -e DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/api_maisart_production \
-                isadoraxavierr/${BITBUCKET_REPO_SLUG}:latest \
-                bundle exec rails db:migrate
           services:
             - docker
       - step:
@@ -94,6 +84,3 @@ pipelines:
                 DOCKER_CUSTOM_IMAGE_NAME: isadoraxavierr/${BITBUCKET_REPO_SLUG}:latest
           services:
             - docker
-          variables:
-            DOCKER_USERNAME: ${DOCKER_USERNAME}
-            DOCKER_PASSWORD: ${DOCKER_PASSWORD}
