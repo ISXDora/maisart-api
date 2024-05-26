@@ -11,6 +11,7 @@ image: atlassian/default-image:3
 pipelines:
   default:
     - parallel:
+      - steps:
         - step:
             name: Build and Test Api
             script:
@@ -43,7 +44,6 @@ pipelines:
             - "*.tar"
       - step:
           name: Push Docker Image for API to Docker Hub
-          deployment: Production
           script:
             - echo ${DOCKER_PASSWORD} | docker login --username "$DOCKER_USERNAME" --password-stdin
             - IMAGE_NAME_API=$BITBUCKET_REPO_SLUG
@@ -67,7 +67,6 @@ pipelines:
             - docker
       - step:
         name: Deploy Database na Azure
-        deployment: Production
         script:
         - pipe: atlassian/azure-web-apps-containers-deploy:1.2.0
           variables:
@@ -84,7 +83,6 @@ pipelines:
           DOCKER_PASSWORD: ${DOCKER_PASSWORD}
       - step:
           name: Deploy API na Azure
-          deployment: Production
           script:
             - pipe: atlassian/azure-web-apps-containers-deploy:1.2.0
               variables:
