@@ -82,5 +82,5 @@ development:
 production:
  <<: *default
  database: <%= ENV['database'] %>
- username: <%= ENV['username'] %>
- password: <%= ENV['password'] %>
+ username: <%= ENV['POSTGRES_USERNAME'] %>
+ password: <%= ENV['POSTGRES_PASSWORD'] %>
