@@ -4,15 +4,17 @@
 sleep 5
 
 # Verificar se o banco de dados existe
-if ! psql -h db -U maisartadmin -lqt | cut -d \| -f 1 | grep -qw $database; then
+if ! psql -h $host -U $username -lqt | cut -d \| -f 1 | grep -qw $database; then
   echo "Creating database $database"
-  rails db:create
+  # Adicionar a senha ao comando de criação do banco de dados
+  PGPASSWORD=$password rails db:create
 else
   echo "Database $database already exists"
 fi
 
 # Executar as migrações
-rails db:migrate
+# Adicionar as credenciais ao comando de migração
+PGPASSWORD=$password rails db:migrate
 
 # Executar o servidor Rails (ou outro comando necessário)
 rails server -b 0.0.0.0
