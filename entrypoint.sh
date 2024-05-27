@@ -4,7 +4,7 @@
 sleep 5
 
 # Verificar se o banco de dados existe
-if ! psql -h db -U postgres -lqt | cut -d \| -f 1 | grep -qw $database; then
+if ! psql -h db -U maisartadmin -lqt | cut -d \| -f 1 | grep -qw $database; then
   echo "Creating database $database"
   rails db:create
 else
