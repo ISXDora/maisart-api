@@ -73,9 +73,9 @@ development:
 # the values provided in this file. Alternatively, you can specify a connection
 # URL environment variable explicitly:
 #
-  production:
-    url: <%= ENV["DATABASE_URL"] %>
-#
+#   production:
+#     url: "postgres://postgres:admin@https://maisart-db.azurewebsites.net/maisart-db"
+# #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
@@ -84,3 +84,4 @@ production:
  database: <%= ENV['database'] %>
  username: <%= ENV['POSTGRES_USERNAME'] %>
  password: <%= ENV['POSTGRES_PASSWORD'] %>
+ port: 5432
