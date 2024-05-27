@@ -53,20 +53,7 @@ pipelines:
             - docker tag "${IMAGE_API}:${VERSION}" "${IMAGE_API}:latest"
             - docker push "${IMAGE_API}:latest"
           services:
-            - docker
-      - step:
-          name: Deploy Database na Azure
-          script:
-          - pipe: atlassian/azure-web-apps-containers-deploy:1.2.0
-            variables:
-              AZURE_APP_ID: ${AZURE_APP_ID_DB}
-              AZURE_PASSWORD: ${AZURE_PASSWORD_DB}
-              AZURE_TENANT_ID: ${AZURE_TENANT_ID_DB}
-              AZURE_RESOURCE_GROUP: ${AZURE_RESOURCE_GROUP}
-              AZURE_APP_NAME: ${AZURE_APP_NAME_DB}
-              DOCKER_CUSTOM_IMAGE_NAME: "postgres:12.17"
-          services:
-            - docker
+            - docker            
       - step:
           name: Deploy API na Azure
           script:
