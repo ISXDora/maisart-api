@@ -4,15 +4,17 @@
 sleep 5
 
 # Verificar se o banco de dados existe
-if ! psql -h db -U postgres -lqt | cut -d \| -f 1 | grep -qw $database; then
+if ! psql -h $HOST_DB -U $USERNAME_DB -lqt | cut -d \| -f 1 | grep -qw $database; then
   echo "Creating database $database"
-  rails db:create
+  # Adicionar a senha ao comando de criação do banco de dados
+  PGPASSWORD=$PASSWORD_DB rails db:create
 else
   echo "Database $database already exists"
 fi
 
 # Executar as migrações
-rails db:migrate
+# Adicionar as credenciais ao comando de migração
+PGPASSWORD=$PASSWORD_DB rails db:migrate
 
 # Executar o servidor Rails (ou outro comando necessário)
 rails server -b 0.0.0.0
