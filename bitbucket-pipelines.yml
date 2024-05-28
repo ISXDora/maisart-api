@@ -67,8 +67,5 @@ pipelines:
                 AZURE_APP_NAME: ${AZURE_APP_NAME_API}
                 DOCKER_CUSTOM_IMAGE_NAME: isadoraxavierr/${BITBUCKET_REPO_SLUG}:latest
                 AZURE_POSTGRESQL_CONNECTIONSTRING: ${AZURE_POSTGRESQL_CONNECTIONSTRING}
-            - RAILS_ENV=production bundle exec rake db:migrate
-            - RAILS_ENV=production bundle exec puma -C config/puma.rb
           services:
             - docker
-            - bundler
