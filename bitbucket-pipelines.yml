@@ -56,6 +56,7 @@ pipelines:
             - docker            
       - step:
           name: Deploy API na Azure
+          deployment: Production
           script:
             - pipe: atlassian/azure-web-apps-containers-deploy:1.2.0
               variables:
