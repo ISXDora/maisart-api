@@ -27,10 +27,10 @@ services:
     networks:
       - maisart_net
     environment:
-      password: admin
-      username: postgres
+      PASSWORD_DB: admin
+      USERNAME_DB: postgres
       database: api_maisart_development
-      host: db
+      HOST_DB: db
     command: ./entrypoint.sh
 
 volumes: 
