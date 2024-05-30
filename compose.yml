@@ -32,7 +32,14 @@ services:
       database: api_maisart_development
       HOST_DB: db
     command: ./entrypoint.sh
-
+  web:
+    container_name: maisart-web
+    image: isadoraxavierr/maisart-web
+    restart: always
+    ports: 
+      - 8080:8080
+    networks:
+      - maisart_net
 volumes: 
   db-docker-vol:
     name: postgre-db-maisart-vol-dev
