@@ -25,7 +25,15 @@ pipelines:
           image: hadolint/hadolint:latest-debian
           script:
             - hadolint Dockerfile
-
+      - step:
+          name: Horusec Security Scan
+          image: ubuntu:latest
+          caches:
+            - docker
+          script:
+            - apt-get update && apt-get install -y curl git
+            - curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
+            - horusec start -p="./" -e="true" -D --enable-git-history="true" --enable-commit-author="true"
   branches:
     main:
       - step:
