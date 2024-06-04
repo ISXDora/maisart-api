@@ -30,6 +30,10 @@ pipelines:
       - step:
           name: Horusec Security Scan
           image: ubuntu:latest
+          caches:
+            - docker
+          services:
+            - docker
           script:
             - apt-get update && apt-get install -y curl git sudo
             - curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
