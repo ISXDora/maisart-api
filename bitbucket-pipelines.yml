@@ -33,7 +33,7 @@ pipelines:
           script:
             - apt-get update && apt-get install -y curl git
             - curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
-            - horusec start -p="./" -D --enable-git-history="true" --enable-commit-author="true" -e
+            - horusec start -p="./" --enable-git-history="true" --enable-commit-author="true" -e -u http://http://localhost:8000
   branches:
     main:
       - step:
