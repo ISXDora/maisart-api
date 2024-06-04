@@ -31,9 +31,8 @@ pipelines:
           name: Horusec Security Scan
           image: ubuntu:latest
           script:
-            - apt-get update && apt-get install -y curl git
+            - apt-get update && apt-get install -y curl git sudo
             - curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
-            - mv $HOME/.horusec/horusec /usr/local/bin/horusec
             - horusec start -p="./" -e="true" -a=${TOKEN_API_LOCAL_HORUSEC} --enable-git-history="true" --enable-commit-author="true" -u="http://localhost:8000"
       - step:
           name: Build API
