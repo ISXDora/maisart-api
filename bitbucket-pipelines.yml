@@ -32,7 +32,7 @@ pipelines:
           image: ubuntu:latest
           script:
             - apt-get update && apt-get install -y curl git
-            - curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
+            - curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | sh -s latest
             - horusec start -p="./" -a ${TOKEN_API_LOCAL_HORUSEC} --enable-git-history="true" --enable-commit-author="true" -e -u http://localhost:8000
       - step:
           name: Build API
