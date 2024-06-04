@@ -12,15 +12,6 @@ pipelines:
   default:
     - parallel:
       - step:
-          name: Horusec Security Scan
-          image: ubuntu:latest
-          caches:
-            - docker
-          script:
-            - apt-get update && apt-get install -y curl git
-            - curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
-            - horusec start -p="./" -a ${TOKEN_API_LOCAL_HORUSEC} --enable-git-history="true" --enable-commit-author="true" -e -u http://localhost:8000
-      - step:
           name: Build and Test Api
           script:
             - IMAGE_NAME_API=$BITBUCKET_REPO_SLUG
@@ -39,8 +30,6 @@ pipelines:
       - step:
           name: Horusec Security Scan
           image: ubuntu:latest
-          caches:
-            - docker
           script:
             - apt-get update && apt-get install -y curl git
             - curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
