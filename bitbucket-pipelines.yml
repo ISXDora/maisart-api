@@ -33,7 +33,7 @@ pipelines:
           script:
             - apt-get update && apt-get install -y curl git sudo
             - curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
-            - horusec start -p="./" -e="true" -a=${TOKEN_API_LOCAL_HORUSEC} --enable-git-history="true" --enable-commit-author="true" -u="http://localhost:8000" -D
+            - horusec start -p="./" -e="true" -a=${TOKEN_API_LOCAL_HORUSEC} --enable-git-history="true" --enable-commit-author="true" -u="https://e07e-2804-29b8-541b-139-cecc-baaa-d316-d324.ngrok-free.app" -D
       - step:
           name: Build API
           script:
