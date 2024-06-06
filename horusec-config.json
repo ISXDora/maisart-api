@@ -23,10 +23,7 @@
   "horusecCliEnableInformationSeverity": false,
   "horusecCliEnableOwaspDependencyCheck": false,
   "horusecCliEnableShellcheck": false,
-  "horusecCliFalsePositiveHashes": [
-    "74e2345991b7a440f42b50bf7cc2bf0e16d1c4f976079fc14ccf3fee05335cfc",
-    "74e2345991b7a440f42b50bf7cc2bf0e16d1c4f976079fc14ccf3fee05335cfc"
-  ],
+  "horusecCliFalsePositiveHashes": null,
   "horusecCliFilesOrPathsToIgnore": [
     "*tmp*",
     "**/.vscode/**"
@@ -34,14 +31,17 @@
   "horusecCliHeaders": {},
   "horusecCliHorusecApiUri": "http://0.0.0.0:8000",
   "horusecCliJsonOutputFilepath": "",
-  "horusecCliLogFilePath": "/tmp/horusec-2024-06-06-00-02-24.log",
+  "horusecCliLogFilePath": "/tmp/horusec-2024-06-06-01-02-57.log",
   "horusecCliMonitorRetryInSeconds": 15,
   "horusecCliPrintOutputType": "",
   "horusecCliProjectPath": "/home/isadora/projects/maisart/api-maisart",
   "horusecCliRepositoryAuthorization": "00000000-0000-0000-0000-000000000000",
   "horusecCliRepositoryName": "api-maisart",
   "horusecCliReturnErrorIfFoundVulnerability": false,
-  "horusecCliRiskAcceptHashes": null,
+  "horusecCliRiskAcceptHashes": [
+    "74e2345991b7a440f42b50bf7cc2bf0e16d1c4f976079fc14ccf3fee05335cfc",
+    "74e2345991b7a440f42b50bf7cc2bf0e16d1c4f976079fc14ccf3fee05335cfc"
+  ],
   "horusecCliSeveritiesToIgnore": [
     "INFO"
   ],
@@ -55,7 +55,7 @@
       "istoignore": false
     },
     "Brakeman": {
-      "istoignore": true
+      "istoignore": false
     },
     "BundlerAudit": {
       "istoignore": false
