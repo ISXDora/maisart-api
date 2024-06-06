@@ -59,7 +59,9 @@ pipelines:
             - docker tag "${IMAGE_API}:${VERSION}" "${IMAGE_API}:latest"
             - docker push "${IMAGE_API}:latest"
           services:
-            - docker            
+            - docker
+          caches:
+            - docker
       - step:
           name: Deploy API na Azure
           deployment: Production
@@ -74,4 +76,6 @@ pipelines:
                 DOCKER_CUSTOM_IMAGE_NAME: isadoraxavierr/${BITBUCKET_REPO_SLUG}:latest
                 AZURE_POSTGRESQL_CONNECTIONSTRING: ${AZURE_POSTGRESQL_CONNECTIONSTRING}
           services:
+            - docker
+          caches:
             - docker
