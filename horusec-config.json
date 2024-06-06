@@ -23,7 +23,10 @@
   "horusecCliEnableInformationSeverity": false,
   "horusecCliEnableOwaspDependencyCheck": false,
   "horusecCliEnableShellcheck": false,
-  "horusecCliFalsePositiveHashes": null,
+  "horusecCliFalsePositiveHashes":  [
+    "74e2345991b7a440f42b50bf7cc2bf0e16d1c4f976079fc14ccf3fee05335cfc",
+    "1063e1f80f24293c2c5c008c14abd1c06c6fbd55d52e7caca652cfa5c4a77c10"
+  ],
   "horusecCliFilesOrPathsToIgnore": [
     "*tmp*",
     "**/.vscode/**"
@@ -39,8 +42,7 @@
   "horusecCliRepositoryName": "api-maisart",
   "horusecCliReturnErrorIfFoundVulnerability": false,
   "horusecCliRiskAcceptHashes": [
-    "74e2345991b7a440f42b50bf7cc2bf0e16d1c4f976079fc14ccf3fee05335cfc",
-    "74e2345991b7a440f42b50bf7cc2bf0e16d1c4f976079fc14ccf3fee05335cfc"
+    "3e9d85e44b62df1d9075156253456f96aecd4d0e3afb481ad8cec2f86f097c69"
   ],
   "horusecCliSeveritiesToIgnore": [
     "INFO"
