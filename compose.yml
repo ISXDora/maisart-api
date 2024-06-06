@@ -40,6 +40,8 @@ services:
       - 8080:8080
     networks:
       - maisart_net
+    environment: 
+      VITE_API_URL: http://localhost:3000
 volumes: 
   db-docker-vol:
     name: postgre-db-maisart-vol-dev
