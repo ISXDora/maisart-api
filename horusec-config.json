@@ -1,28 +1,4 @@
 {
-  "horusecCliCertInsecureSkipVerify": false,
-  "horusecCliCertPath": "",
-  "horusecCliContainerBindProjectPath": "",
-  "horusecCliCustomImages": {
-    "c": "",
-    "csharp": "",
-    "elixir": "",
-    "generic": "",
-    "go": "",
-    "hcl": "",
-    "javascript": "",
-    "leaks": "",
-    "php": "",
-    "python": "",
-    "ruby": "",
-    "shell": ""
-  },
-  "horusecCliCustomRulesPath": "",
-  "horusecCliDisableDocker": false,
-  "horusecCliEnableCommitAuthor": false,
-  "horusecCliEnableGitHistoryAnalysis": false,
-  "horusecCliEnableInformationSeverity": false,
-  "horusecCliEnableOwaspDependencyCheck": false,
-  "horusecCliEnableShellcheck": false,
   "horusecCliFalsePositiveHashes": [
     "74e2345991b7a440f42b50bf7cc2bf0e16d1c4f976079fc14ccf3fee05335cfc",
     "74e2345991b7a440f42b50bf7cc2bf0e16d1c4f976079fc14ccf3fee05335cfc"
@@ -31,16 +7,6 @@
     "*tmp*",
     "**/.vscode/**"
   ],
-  "horusecCliHeaders": {},
-  "horusecCliHorusecApiUri": "http://0.0.0.0:8000",
-  "horusecCliJsonOutputFilepath": "",
-  "horusecCliLogFilePath": "/tmp/horusec-2024-06-06-00-02-24.log",
-  "horusecCliMonitorRetryInSeconds": 15,
-  "horusecCliPrintOutputType": "",
-  "horusecCliProjectPath": "/home/isadora/projects/maisart/api-maisart",
-  "horusecCliRepositoryAuthorization": "00000000-0000-0000-0000-000000000000",
-  "horusecCliRepositoryName": "api-maisart",
-  "horusecCliReturnErrorIfFoundVulnerability": false,
   "horusecCliRiskAcceptHashes": null,
   "horusecCliSeveritiesToIgnore": [
     "INFO"
@@ -49,92 +15,5 @@
     "Vulnerability"
   ],
   "horusecCliTimeoutInSecondsAnalysis": 600,
-  "horusecCliTimeoutInSecondsRequest": 300,
-  "horusecCliToolsConfig": {
-    "Bandit": {
-      "istoignore": false
-    },
-    "Brakeman": {
-      "istoignore": false
-    },
-    "BundlerAudit": {
-      "istoignore": false
-    },
-    "Checkov": {
-      "istoignore": false
-    },
-    "DotnetCli": {
-      "istoignore": false
-    },
-    "Flawfinder": {
-      "istoignore": false
-    },
-    "GitLeaks": {
-      "istoignore": false
-    },
-    "GoSec": {
-      "istoignore": false
-    },
-    "HorusecEngine": {
-      "istoignore": false
-    },
-    "MixAudit": {
-      "istoignore": false
-    },
-    "Nancy": {
-      "istoignore": false
-    },
-    "NpmAudit": {
-      "istoignore": false
-    },
-    "OwaspDependencyCheck": {
-      "istoignore": false
-    },
-    "PhpCS": {
-      "istoignore": false
-    },
-    "Safety": {
-      "istoignore": false
-    },
-    "SecurityCodeScan": {
-      "istoignore": false
-    },
-    "Semgrep": {
-      "istoignore": false
-    },
-    "ShellCheck": {
-      "istoignore": false
-    },
-    "Sobelow": {
-      "istoignore": false
-    },
-    "TfSec": {
-      "istoignore": false
-    },
-    "Trivy": {
-      "istoignore": false
-    },
-    "YarnAudit": {
-      "istoignore": false
-    }
-  },
-  "horusecCliWorkDir": {
-    "go": [],
-    "csharp": [],
-    "ruby": [],
-    "python": [],
-    "java": [],
-    "kotlin": [],
-    "javaScript": [],
-    "leaks": [],
-    "hcl": [],
-    "php": [],
-    "c": [],
-    "yaml": [],
-    "generic": [],
-    "elixir": [],
-    "shell": [],
-    "dart": [],
-    "nginx": []
-  }
+  "horusecCliTimeoutInSecondsRequest": 300
 }
