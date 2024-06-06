@@ -1,13 +1,13 @@
 {
-  "horusecCliFalsePositiveHashes": null,
+  "horusecCliFalsePositiveHashes": [
+    "74e2345991b7a440f42b50bf7cc2bf0e16d1c4f976079fc14ccf3fee05335cfc",
+    "74e2345991b7a440f42b50bf7cc2bf0e16d1c4f976079fc14ccf3fee05335cfc"
+  ],
   "horusecCliFilesOrPathsToIgnore": [
     "*tmp*",
     "**/.vscode/**"
   ],
-  "horusecCliRiskAcceptHashes": [
-    "74e2345991b7a440f42b50bf7cc2bf0e16d1c4f976079fc14ccf3fee05335cfc",
-    "74e2345991b7a440f42b50bf7cc2bf0e16d1c4f976079fc14ccf3fee05335cfc"
-  ],
+  "horusecCliRiskAcceptHashes": null,
   "horusecCliSeveritiesToIgnore": [
     "INFO"
   ],
