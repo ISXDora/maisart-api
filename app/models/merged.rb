@@ -1,0 +1,2 @@
+class merged 
+end
