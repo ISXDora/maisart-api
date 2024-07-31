@@ -1,0 +1,2 @@
+class removeAfter 
+end
