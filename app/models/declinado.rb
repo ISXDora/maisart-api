@@ -1,0 +1,2 @@
+class declinado
+end
